@@ -5,6 +5,6 @@ supabase
 requests
 pandas
 numpy
-alpaca-trade-api
+alpaca-trade-api>=3.2.0
 yfinance
-urllib3<2.0.0
+urllib3>=1.26.18,<2.0.0
