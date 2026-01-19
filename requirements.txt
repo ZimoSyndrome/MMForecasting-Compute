@@ -5,3 +5,5 @@ supabase
 requests
 pandas
 numpy
+alpaca-trade-api
+yfinance
