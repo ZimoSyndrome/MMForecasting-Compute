@@ -1,3 +1,7 @@
 fastapi
 uvicorn
 pydantic
+supabase
+requests
+pandas
+numpy
