@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 import os
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import traceback
 
 from supabase import create_client
@@ -112,18 +112,19 @@ async def run_compute_job(payload: RunRequest, request: Request):
         # Insert ~5 fake points.
         base_ts = datetime.now(timezone.utc)
         ts_rows = []
+
         for i in range(5):
             ts_rows.append({
                 "run_id": run_id,
                 "model": "arima_garch",
-                "ts": (base_ts).isoformat(),
+                "ts": (base_ts + timedelta(days=i)).isoformat(),  # UNIQUE ts
                 "actual_return": 0.0,
                 "pred_return": 0.0,
                 "pred_vol": 0.0,
                 "position": 0.0,
                 "strategy_return": 0.0,
                 "equity_curve": 1.0,
-                "drawdown": 0.0
+                "drawdown": 0.0,
             })
         sb.table("run_timeseries").upsert(ts_rows).execute()
 
