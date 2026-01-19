@@ -7,3 +7,4 @@ pandas
 numpy
 alpaca-trade-api
 yfinance
+urllib3<2.0.0
